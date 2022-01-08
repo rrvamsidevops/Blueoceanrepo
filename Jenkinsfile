@@ -8,9 +8,20 @@ pipeline {
     }
 
     stage('Stage2a') {
-      steps {
-        echo 'Hi Stage2a'
-        echo 'Stage2a step2'
+      parallel {
+        stage('Stage2a') {
+          steps {
+            echo 'Hi Stage2a'
+            echo 'Stage2a step2'
+          }
+        }
+
+        stage('Stage2B') {
+          steps {
+            echo 'Hello2B'
+          }
+        }
+
       }
     }
 
